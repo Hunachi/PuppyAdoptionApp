@@ -8,12 +8,13 @@
 ## :scroll: Description
 <!--- Describe your app in one or two sentences -->
 Puppy Adoption App by Hunachi.
+
 This app is my first App with JetPack Compose.
 
 ## :bulb: Motivation and Context
 <!--- Optionally point readers to interesting parts of your submission. -->
 <!--- What are you especially proud of? -->
-My proud points of this app are
+Good points of this app are
 -  Cute Home Screen (animals Lists)
 - Multiple Photo can be show for each animal. 
 
