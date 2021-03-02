@@ -1,9 +1,23 @@
+/*
+ * Copyright 2021 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.example.androiddevchallenge.model
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.IdRes
 import com.example.androiddevchallenge.R
-import com.example.androiddevchallenge.model.AnimalImage
 
 data class AnimalInfo(
     val id: Int = 0,
@@ -81,7 +95,7 @@ data class AnimalInfo(
                 images = listOf(AnimalImage(R.drawable.cat5_0)),
                 animalType = AnimalType.CAT,
                 description = "いつも縁側でひなたぼっこをしています." +
-                        "ちょうちょが大好きで春になると庭で追いかけっこをしています．寝顔がかわいい猫ちゃんです．",
+                    "ちょうちょが大好きで春になると庭で追いかけっこをしています．寝顔がかわいい猫ちゃんです．",
                 owner = AnimalOwner("Hunachi", imageRes = R.drawable.owner_icon)
             ),
             AnimalInfo(
