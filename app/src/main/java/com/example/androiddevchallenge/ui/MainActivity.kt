@@ -13,24 +13,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.androiddevchallenge
+package com.example.androiddevchallenge.ui
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.layout.Column
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.navArgument
+import androidx.navigation.compose.rememberNavController
+import com.example.androiddevchallenge.ui.detail.DetailScreen
+import com.example.androiddevchallenge.ui.home.HomeScreen
 import com.example.androiddevchallenge.ui.theme.PuppyAdoptionAppTheme
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            val applicationWidth = applicationContext.resources.displayMetrics.let { it.widthPixels / it.density }
             PuppyAdoptionAppTheme {
-                MyApp()
+                MainScreen(applicationWidth)
             }
         }
     }
@@ -38,9 +46,28 @@ class MainActivity : AppCompatActivity() {
 
 // Start building your app here!
 @Composable
-fun MyApp() {
+fun MyApp(applicationWidth: Float) {
     Surface(color = MaterialTheme.colors.background) {
-        Text(text = "Ready... Set... GO!")
+        MainScreen(applicationWidth = applicationWidth)
+    }
+}
+
+@Composable
+fun MainScreen(applicationWidth: Float) {
+    val navController = rememberNavController()
+
+    Column {
+        NavHost(navController, startDestination = "home") {
+            composable("home") { HomeScreen(navController) }
+            composable(
+                "detail/{animalId}",
+                arguments = listOf(navArgument("animalId") { type = NavType.IntType })
+            ) { backStackEntry ->
+                val animalId = backStackEntry.arguments
+                    ?.getInt("animalId", 0) ?: throw IllegalAccessError()
+                DetailScreen(navController, animalId, applicationWidth)
+            }
+        }
     }
 }
 
@@ -48,7 +75,7 @@ fun MyApp() {
 @Composable
 fun LightPreview() {
     PuppyAdoptionAppTheme {
-        MyApp()
+        MyApp(0f)
     }
 }
 
@@ -56,6 +83,6 @@ fun LightPreview() {
 @Composable
 fun DarkPreview() {
     PuppyAdoptionAppTheme(darkTheme = true) {
-        MyApp()
+        MyApp(0f)
     }
 }
