@@ -53,7 +53,7 @@ fun DetailHeader(animalInfo: AnimalInfo, applicationWidth: Float) {
                     image,
                     contentDescription = null,
                     modifier = imageModifier,
-                    contentScale = ContentScale.Fit
+                    contentScale = ContentScale.Crop
                 )
             }
         }
